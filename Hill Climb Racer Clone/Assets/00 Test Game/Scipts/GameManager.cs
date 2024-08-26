@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 
 public class GameManager : MonoBehaviour
@@ -27,6 +28,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject gameOverCanvas;
 
 
+    private int currentCoins;
+
+    [SerializeField] private TextMeshProUGUI coinsCollected;
+
+
     private void Awake()
     {
         if (instance == null)
@@ -40,6 +46,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        PlayerPrefs.DeleteAll();
+
         currentFuelAmount = maxFuelAmount;
 
         UpdateUI();
@@ -102,6 +110,19 @@ public class GameManager : MonoBehaviour
         currentFuelAmount = maxFuelAmount;
 
         UpdateUI();
+    }
+
+
+    public void UpdateScore(int newScore)
+    {
+        currentCoins = newScore;
+
+        coinsCollected.text = currentCoins.ToString();
+    }
+
+    public int GetScore()
+    {
+        return currentCoins;
     }
 }
 

@@ -19,8 +19,8 @@ public class GroundGenerator : MonoBehaviour
 
     private Vector3 lastPosition;
 
-    [SerializeField] private float xDifficulty = 0.1f;
-    [SerializeField] private float yDifficulty = 0.1f;
+    //[SerializeField] private float xDifficulty = 0.1f;
+    //[SerializeField] private float yDifficulty = 0.1f;
 
 
     private void OnValidate()
@@ -34,6 +34,8 @@ public class GroundGenerator : MonoBehaviour
 
             groundShapeController.spline.InsertPointAt(i, lastPosition);
 
+            //Debug.Log(lastPosition);
+
             if( i != 0 && i != levelLength - 1 )
             {
                 groundShapeController.spline.SetTangentMode(i, ShapeTangentMode.Continuous);
@@ -42,8 +44,8 @@ public class GroundGenerator : MonoBehaviour
                 groundShapeController.spline.SetRightTangent(i, curveSmoothness * widthMultiplier * Vector3.right);
             }
 
-            widthMultiplier += xDifficulty;
-            heightMultipler += yDifficulty;
+            //widthMultiplier += xDifficulty;
+            //heightMultipler += yDifficulty;
         }
 
         groundShapeController.spline.InsertPointAt(levelLength, 
